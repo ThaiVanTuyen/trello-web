@@ -1,16 +1,14 @@
-import { ThemeProvider } from '@mui/material/styles'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
-import { useState } from 'react'
+import { Typography, useColorScheme } from '@mui/material'
 
 export function SelectSmall() {
-  const [mode, setMode] = useState('light')
+  const { mode, setMode } = useColorScheme()
   const handleChange = (event) => {
     setMode(event.target.value)
   }
-
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
       <InputLabel id="label-select-dark-light-mode">Mode</InputLabel>
@@ -30,8 +28,6 @@ export function SelectSmall() {
 }
 
 function App() {
-
-
   return (
     <>
       <SelectSmall />
