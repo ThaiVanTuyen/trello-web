@@ -23,8 +23,59 @@ const theme = extendTheme({
           }
         }
       }
-    } }
+    } },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none'
+        }
+      }
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          '*::-webkit-scrollbar': {
+            width: '8px',
+            height: '8px'
+          },
+          '*::-webkit-scrollbar-thumb': {
+            backgroundColor: '#bdc3c7',
+            borderRadius: '4px'
+          },
+          '*::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: '#00b894'
+          }
+        }
+      }
+    },
+    MuiInputLabel:{
+      styleOverrides: {
+        root: ({ theme }) => {
+          return {
+            color: theme.palette.primary.main,
+            fontSize: '0.875rem'
+          }
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: ({ theme }) => {
+          return {
+            color: theme.palette.primary.main,
+            fontSize: '0.875rem',
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: theme.palette.primary.main
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: teal[800]
+            }
+          }
+        }
+      }
+    }
+  }
 })
-
 
 export default theme
