@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ModelSelect from '../../components/ModelSelect'
+import ModelSelect from '../ModelSelect/ModelSelect'
 import { Box, Button, SvgIcon, Typography, TextField, Tooltip, Badge, InputAdornment } from '@mui/material'
 import AppsIcon from '@mui/icons-material/Apps'
 import TrelloIcon from '../../assets/trello.svg?react'

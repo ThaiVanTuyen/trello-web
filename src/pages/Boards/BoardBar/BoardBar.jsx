@@ -1,7 +1,7 @@
 import { AddToDrive, Bolt, Dashboard, FilterList, PersonAdd, VpnLock } from '@mui/icons-material'
 import { Avatar, AvatarGroup, Box, Button, Chip } from '@mui/material'
 
-function BoardBar() {
+function BoardBar({ board }) {
   const menu_Style = {
     color: 'white',
     bgcolor: 'transparent',
@@ -23,7 +23,6 @@ function BoardBar() {
       alignItems: 'center',
       justifyContent: 'space-between',
       overflow: 'auto',
-      borderBottom: '1px solid white',
       bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50' : '#1976d2')
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -31,13 +30,13 @@ function BoardBar() {
           sx={menu_Style}
           clickable
           icon={<Dashboard/>}
-          label="PhamNinh704"
+          label={board?.title}
         />
         <Chip
           sx={menu_Style}
           clickable
           icon={<VpnLock/>}
-          label="Public/Private Workspace"
+          label={board?.type === 'public' ? 'Public' : 'Private'}
         />
         <Chip
           sx={menu_Style}
