@@ -1,5 +1,5 @@
 import { AddToDrive, Bolt, Dashboard, FilterList, PersonAdd, VpnLock } from '@mui/icons-material'
-import { Avatar, AvatarGroup, Box, Button, Chip } from '@mui/material'
+import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip } from '@mui/material'
 
 function BoardBar({ board }) {
   const menu_Style = {
@@ -26,12 +26,14 @@ function BoardBar({ board }) {
       bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50' : '#1976d2')
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Chip
-          sx={menu_Style}
-          clickable
-          icon={<Dashboard/>}
-          label={board?.title}
-        />
+        <Tooltip title={board?.description}>
+          <Chip
+            sx={menu_Style}
+            clickable
+            icon={<Dashboard/>}
+            label={board?.title}
+          />
+        </Tooltip>
         <Chip
           sx={menu_Style}
           clickable

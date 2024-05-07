@@ -1,12 +1,12 @@
 import Board from './pages/Boards/Board'
-import {BrowserRouter, Routes, Route } from 'react-router-dom'
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/:id" element={<Board />} />
+        <Routes >
+          <Route path="/" element={<Board />} />
+          <Route path="/board/:id" element={<Board />} />
         </Routes>
       </BrowserRouter>
     </>
