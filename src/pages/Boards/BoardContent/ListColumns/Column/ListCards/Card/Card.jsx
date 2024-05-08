@@ -29,9 +29,9 @@ function Card({ card }) {
         display: 'flex',
         justifyContent: 'space-between'
       }}>
-        <Button size="small" startIcon={<Group/>}>{card?.memberIds.length}</Button>
-        <Button size="small" startIcon={<Comment/>}>{card?.comments.length}</Button>
-        <Button size="small" startIcon={<Attachment/>}>{card?.attachments.length}</Button>
+        <Button size="small" startIcon={<Group/>}>{card?.memberIds ? card?.memberIds.length : 0 }</Button>
+        <Button size="small" startIcon={<Comment/>}>{card?.memberIds ? card?.comments.length : 0}</Button>
+        <Button size="small" startIcon={<Attachment/>}>{card?.memberIds ? card?.attachments.length : 0}</Button>
       </CardActions>
     </MuiCard>
   )

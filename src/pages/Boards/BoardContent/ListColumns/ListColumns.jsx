@@ -4,25 +4,29 @@ import { Close, NoteAdd } from '@mui/icons-material'
 import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortable'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-function ListColumns({ columns }) {
+function ListColumns({ columns, createNewColumn, createNewCard }) {
   const [titleColumn, setTitleColumn] = useState('')
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
   const toggleOpenNewColumnForm = () => {
     setOpenNewColumnForm(!openNewColumnForm)
     setTitleColumn('')
   }
-  const addNewColumn = () => {
+  const addNewColumn = async () => {
     if (titleColumn) {
+      await createNewColumn({ title: titleColumn })
       setTitleColumn('')
       setOpenNewColumnForm(false)
-      toast.success('Create new column successfully!')
+      // toast.success('Create new column successfully!')
     }
     else {
       toast.error('Please enter column title!')
     }
   }
+
   return (
-    <SortableContext items={columns.map( c => c._id)} strategy={horizontalListSortingStrategy}>
+    <SortableContext
+      items={ columns ? columns?.map( c => c._id) : []}
+      strategy={horizontalListSortingStrategy}>
       <Box
         sx={{
           bgcolor: 'inherit',
@@ -33,7 +37,7 @@ function ListColumns({ columns }) {
           overflowY: 'hidden'
         }}
       >
-        {columns?.map(column => <Column key={column._id} column={column} />)}
+        {columns?.map(column => <Column key={column._id} column={column} createNewColumn={createNewColumn} createNewCard={createNewCard}/>)}
         {!openNewColumnForm
           ?
           <Box

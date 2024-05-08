@@ -18,7 +18,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { toast } from 'react-toastify'
 
-function Column({ column }) {
+function Column({ column, createNewCard }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: column._id, data: { column } })
@@ -29,8 +29,9 @@ function Column({ column }) {
     setOpenNewCardForm(!openNewCardForm)
     setTitleCard('')
   }
-  const addNewCard = () => {
+  const addNewCard = async () => {
     if (titleCard) {
+      await createNewCard({ title: titleCard, columnId: column._id })
       setTitleCard('')
       setOpenNewCardForm(false)
       toast.success('Create new card successfully!')
@@ -131,7 +132,7 @@ function Column({ column }) {
           </MenuItem>
         </Menu>
       </Box>
-      <ListCards listCards={ mapOrder( column.cards, column.cardOrderIds, '_id') }/>
+      <ListCards listCards={ mapOrder( column.cards, column.cardOrderIds, '_id') } />
       <Box sx={{
         height: (theme ) => theme.trello.columnFooterHeight,
         borderTop: '1px solid #ccc',

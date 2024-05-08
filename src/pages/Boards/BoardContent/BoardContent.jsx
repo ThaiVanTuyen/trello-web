@@ -2,19 +2,20 @@ import { Box } from '@mui/material'
 import ListColumns from './ListColumns/ListColumns'
 import { mapOrder } from '../../../utils/sorts'
 import { DndContext, useSensor, useSensors, MouseSensor, TouchSensor } from '@dnd-kit/core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { arrayMove } from '@dnd-kit/sortable'
 
-function BoardContent({ board }) {
+function BoardContent({ board, createNewColumn, createNewCard }) {
   const mouseSensor = useSensor(MouseSensor, { activationConstraint: { distance: 10 } })
 
   const touchSensor = useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 500 } })
 
   const sensors = useSensors(mouseSensor, touchSensor)
-  const [orderedColumns, SetOrderedColumns] = useState(mapOrder(board?.columns, board?.columnOrderIds, '_id'))
-  // useEffect(() => {
-  //   SetOrderedColumns(mapOrder(board?.columns, board?.columnOrderIds, '_id'))
-  // }, [board])
+  const [orderedColumns, SetOrderedColumns] = useState([])
+  useEffect(() => {
+    SetOrderedColumns(mapOrder(board?.columns, board?.columnOrderIds, '_id'))
+  }, [board])
+
   const handleDragEnd = (event) => {
     const { active, over } = event
     if (!over) return
@@ -34,7 +35,7 @@ function BoardContent({ board }) {
         p: '10px 0'
       }}
       >
-        <ListColumns columns={ orderedColumns } />
+        <ListColumns columns={ orderedColumns } createNewColumn={createNewColumn} createNewCard={createNewCard} />
       </Box>
     </DndContext>
   )
